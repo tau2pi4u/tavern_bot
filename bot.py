@@ -55,4 +55,13 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-bot.run("NjkwOTgxNTE3OTI4OTU1OTE0.XnZ3bw.vWV_6Kdet1fG6NaPABl771ubK9E")
+# Only respond to dm messages which weren't from the bot
+@bot.event
+async def on_message(msg):
+    if type(msg.channel) is discord.DMChannel and msg.author != bot.user:
+        await bot.process_commands(msg)
+
+tokenFile = open("token.txt", "r")
+token = tokenFile.read().strip()
+
+bot.run(token)
