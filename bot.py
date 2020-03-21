@@ -4,6 +4,7 @@ import asyncio
 import datetime
 from random import randint
 import logging
+import sys
 
 daytime_names = ['The Park', 'The Forest', 'The Cafe', 'Building 16']
 evening_names = ['The Hobbit', 'The Shooting Star', 'Stags']
@@ -61,7 +62,7 @@ async def on_message(msg):
     if type(msg.channel) is discord.DMChannel and msg.author != bot.user:
         await bot.process_commands(msg)
 
-tokenFile = open("token.txt", "r")
+tokenFile = open(sys.argv[1], "r")
 token = tokenFile.read().strip()
 
 bot.run(token)
